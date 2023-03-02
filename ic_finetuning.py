@@ -24,7 +24,7 @@ def parse_cmd_line_params():
     parser.add_argument(
         "--epochs",
         help="number of training epochs",
-        default=35, 
+        default=30, 
         type=int,
         required=False)
     parser.add_argument(
@@ -46,6 +46,12 @@ def parse_cmd_line_params():
         help="use authentication token for dataset download",
         action='store_true',
         required=False)
+    parser.add_argument(
+        "--gradient_accumulation_steps",
+        help="number of gradient accumulation steps",
+        default=1,
+        type=int,
+    )
     args = parser.parse_args()
     return args
 
@@ -78,6 +84,7 @@ if __name__ == '__main__':
     batch_size = parse_cmd_line_params().batch
     num_epochs = parse_cmd_line_params().epochs
     model_checkpoint = parse_cmd_line_params().model
+    gradient_accumulation_steps = parse_cmd_line_params().gradient_accumulation_steps
     model_name = model_checkpoint.split("/")[-1]
     output_dir = model_name + "-ic-finetuning"
 
@@ -107,7 +114,7 @@ if __name__ == '__main__':
     val_dataset = Dataset(ds_validation, feature_extractor, label2id, max_duration, device)
 
     ## Training Arguments and Class Weights
-    training_arguments = define_training_args(output_dir, batch_size, num_epochs)
+    training_arguments = define_training_args(output_dir, batch_size, num_epochs, gradient_accumulation_steps=gradient_accumulation_steps)
     # class_weights = compute_class_weights(ds_train, label2id)
 
     ## Trainer 

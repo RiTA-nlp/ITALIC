@@ -24,7 +24,7 @@ class WeightedTrainer(Trainer):
 
 """ Define training arguments """ 
 # def define_training_args(output_dir, batch_size, num_steps): 
-def define_training_args(output_dir, batch_size, num_epochs): 
+def define_training_args(output_dir, batch_size, num_epochs, gradient_accumulation_steps=1):
     training_args = TrainingArguments(
         output_dir=output_dir,
         overwrite_output_dir=True,
@@ -32,7 +32,7 @@ def define_training_args(output_dir, batch_size, num_epochs):
         save_strategy = "epoch",        # save_strategy = "steps",
         learning_rate=1.0e-4,           # learning_rate=3e-5,
         per_device_train_batch_size=batch_size,
-        gradient_accumulation_steps=1,
+        gradient_accumulation_steps=gradient_accumulation_steps,
         per_device_eval_batch_size=batch_size,
         gradient_checkpointing=True,
         num_train_epochs=num_epochs,    
