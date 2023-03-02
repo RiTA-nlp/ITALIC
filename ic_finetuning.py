@@ -86,8 +86,8 @@ if __name__ == '__main__':
     model_checkpoint = parse_cmd_line_params().model
     gradient_accumulation_steps = parse_cmd_line_params().gradient_accumulation_steps
     model_name = model_checkpoint.split("/")[-1]
-    dataset_name = dataset_name.split("italic-")[-1]
-    output_dir = model_name + "-ic-finetuning-" + dataset_name
+    save_dataset_name = dataset_name.split("italic-")[-1]
+    output_dir = model_name + "-ic-finetuning-" + save_dataset_name
 
     ## Load Dataset
     dataset = load_dataset(
