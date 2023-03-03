@@ -1,9 +1,10 @@
 import torch
 from transformers import AutoModelForAudioClassification, AutoFeatureExtractor
-from transformers import TrainingArguments, Trainer
 from datasets import load_dataset
 import pandas as pd
 import argparse
+import os
+import json
 
 import warnings
 warnings.filterwarnings("ignore")
@@ -11,7 +12,7 @@ warnings.filterwarnings("ignore")
 from dataset import Dataset
 from utils import WeightedTrainer, define_training_args, \
     compute_metrics
-
+    
 
 """ Define Command Line Parser """
 def parse_cmd_line_params():
@@ -19,20 +20,21 @@ def parse_cmd_line_params():
     parser.add_argument(
         "--batch",
         help="batch size",
-        default=8, 
+        default=32, 
         type=int,
         required=False)
     parser.add_argument(
-        "--model_ckpt",
-        help="ckpt model to evaluate",  
+        "--model_checkpoint",
+        help="model ckpt to evaluate",
+        default="wav2vec2-xls-r-300m-ic-finetuning-easy",  
         type=str,                          
-        required=True) 
+        required=True)   
     parser.add_argument(
         "--feature_extractor",
         help="feature extractor to use",
         default="facebook/wav2vec2-xls-r-300m",
         type=str,
-        required=True)                
+        required=True)                  
     parser.add_argument(
         "--dataset_name",
         help="name of the dataset to use",
@@ -48,96 +50,77 @@ def parse_cmd_line_params():
     return args
 
 
+""" Define model and feature extractor """
+def define_model(model_checkpoint, feature_extractor):
+    feature_extractor = AutoFeatureExtractor.from_pretrained(feature_extractor)
+    model = AutoModelForAudioClassification.from_pretrained(
+        model_checkpoint, 
+        local_files_only=True
+    )
+    return feature_extractor, model
+
 
 """ Main Program """
 if __name__ == '__main__':
 
     ## Multiprocessing 
-    # torch.multiprocessing.set_start_method('spawn')
+    torch.multiprocessing.set_start_method('spawn')
 
     ## Utils 
-    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    # device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    device = torch.device("cpu")
     print(device)
 
     max_duration = 10.0 
     dataset_name = parse_cmd_line_params().dataset_name
     use_auth_token = parse_cmd_line_params().use_auth_token
     batch_size = parse_cmd_line_params().batch
-    model_checkpoint = parse_cmd_line_params().model_ckpt
+    model_checkpoint = parse_cmd_line_params().model_checkpoint
     feature_extractor = parse_cmd_line_params().feature_extractor
-    output_dir = "inference_results"
+    model_name = model_checkpoint.split("/")[-1]
+    save_dataset_name = dataset_name.split("italic-")[-1]
+    output_dir = "inference_results/" + model_name + "_" + save_dataset_name + "/"
 
-    ## Model and Feature Extractor
-    model = AutoModelForAudioClassification.from_pretrained(
-        model_checkpoint, 
-        local_files_only=True
-        )
-    feature_extractor = AutoFeatureExtractor.from_pretrained(
-        feature_extractor
-        )
-
-    ## Load Dataset
+    ## Load Dataset
     dataset = load_dataset(
         dataset_name, 
         use_auth_token=True if use_auth_token else None
     )
-    ds_train = dataset["train"]
-    ds_test = dataset["validation"]
+    ds_test = dataset["test"]
 
-    ## Mapping intents to labels
-    intents = set(ds_train['intent'])
-    label2id, id2label = dict(), dict()
-    for i, label in enumerate(intents):
-        label2id[label] = str(i)
-        id2label[str(i)] = label
-    num_labels = len(id2label)
+    ## Model & Feature Extractor
+    feature_extractor, model = define_model(
+        model_checkpoint, 
+        feature_extractor
+        )
+ 
+    ## Label2ID from model_ckpt
+    with open(os.path.join(model_checkpoint, "config.json"), "r") as f:
+        config = json.load(f)
+        label2id = config["label2id"]
 
-    test_dataset = Dataset(ds_test, 
+    ## Test Dataset
+    test_dataset = Dataset(
+        ds_test, 
         feature_extractor, 
         label2id, 
         max_duration, 
-        device)
-
-    ## Inference
-    test_args = TrainingArguments(
-        output_dir=output_dir,
-        overwrite_output_dir=True,
-        gradient_accumulation_steps=1,
-        gradient_checkpointing=True,
-        # warmup_ratio=0.1,
-        # weight_decay=0.01,
-        # logging_steps=50,
-        # eval_steps=100,                 
-        # save_steps=100,                 
-        # save_total_limit=2,
-        # load_best_model_at_end=False,
-        metric_for_best_model="accuracy",
-        fp16=True,
-        fp16_full_eval=True,
-        dataloader_num_workers=4,
-        dataloader_pin_memory=True,
-        do_train=False,
-        do_predict=True,
-        per_device_eval_batch_size=batch_size,   
-        dataloader_drop_last=False    
+        device
         )
-    # trainer = Trainer(
-    #     model = model, 
-    #     args = test_args, 
-    #     compute_metrics = compute_metrics
-    #     )
-        ## Trainer 
-    # test_args = define_training_args(
-    #     output_dir, 
-    #     batch_size, 
-    #     num_epochs, 
-    #     gradient_accumulation_steps=gradient_accumulation_steps)
 
+    ## Test Arguments
+    test_arguments = define_training_args(
+        output_dir, 
+        batch_size 
+        )
+
+    ## Trainer
     trainer = WeightedTrainer(
         model=model,
-        args=test_args,
+        args=test_arguments,
         compute_metrics=compute_metrics
     )
 
+    ## Inference
     test_results = trainer.predict(test_dataset)
     print(test_results.metrics)
