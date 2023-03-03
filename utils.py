@@ -3,7 +3,7 @@ from transformers import TrainingArguments, Trainer
 import torch
 import torch.nn as nn
 import numpy as np
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, f1_score
 from sklearn.utils import class_weight
 
 """ Trainer Class """
@@ -68,5 +68,7 @@ def compute_metrics(pred):
     labels = pred.label_ids
     preds = np.argmax(pred.predictions, axis=1)
     acc = accuracy_score(labels, preds)
-    print('Accuracy: ' + str(acc))
-    return { 'accuracy': acc }
+    f1 = f1_score(labels, preds, average='weighted')
+    print(f"Accuracy: {acc*100:.3f}")
+    print(f"F1: {f1*100:.3f}")
+    return { 'accuracy': acc, 'f1': f1 }
