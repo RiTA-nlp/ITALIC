@@ -8,6 +8,11 @@ ITALIC is a new intent classification dataset for the Italian language, which is
 
 - [Data collection](#data-collection)
 - [Dataset](#dataset)
+- [Usage](#usage)
+- [Models used in the paper](#models-used-in-the-paper)
+  - [SLU intent classification](#slu-intent-classification)
+  - [ASR](#asr)
+  - [NLU intent classification](#nlu-intent-classification)
 - [Citation](#citation)
 - [License](#license)
 
@@ -67,6 +72,36 @@ The dataset has been designed for intent classification tasks. The `intent` colu
 - **Accent identification**: the `region` column can be used as the label.
 
 For more information about the dataset, please refer to the [paper](#).
+
+
+## Models used in the paper
+
+### SLU intent classification
+
+The models used in the paper are available on the [Hugging Face Hub](https://huggingface.co/models).
+
+- 🌍 [facebook/wav2vec2-xls-r-300m](https://huggingface.co/facebook/wav2vec2-xls-r-300m)
+- 🌍 [facebook/wav2vec2-xls-r-1b](https://huggingface.co/facebook/wav2vec2-xls-r-1b)
+- 🇮🇹 [jonatasgrosman/wav2vec2-xls-r-1b-italian](https://huggingface.co/jonatasgrosman/wav2vec2-xls-r-1b-italian)
+- 🇮🇹 [jonatasgrosman/wav2vec2-large-xlsr-53-italian](https://huggingface.co/jonatasgrosman/wav2vec2-large-xlsr-53-italian)
+
+### ASR
+
+The models used in the paper are available on the [Hugging Face Hub](https://huggingface.co/models).
+
+- 🇮🇹 Whisper small: [ALM/whisper-it-small-augmented](https://huggingface.co/ALM/whisper-it-small-augmented)
+- 🇮🇹 Whisper medium: [EdoAbati/whisper-medium-it-2](https://huggingface.co/EdoAbati/whisper-medium-it-2)
+- 🇮🇹 Whisper large: [EdoAbati/whisper-large-v2-it](https://huggingface.co/EdoAbati/whisper-large-v2-it)
+
+### NLU intent classification
+
+The models used in the paper are available on the [Hugging Face Hub](https://huggingface.co/models).
+
+- 🌍 [bert-base-multilingual-uncased](https://huggingface.co/bert-base-multilingual-uncased)
+- 🌍 [facebook/mbart-large-cc25](https://huggingface.co/facebook/mbart-large-cc25)
+- 🇮🇹 [dbmdz/bert-base-italian-xxl-uncased](https://huggingface.co/dbmdz/bert-base-italian-xxl-uncased)
+- 🇮🇹 [morenolq/bart-it](https://huggingface.co/morenolq/bart-it)
+
 
 ## License
 
