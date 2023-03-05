@@ -46,13 +46,6 @@ Each split contains the following annotations:
 - `environment`: the environment of the recording (self-annotated). 
 - `device`: the device used for the recording (self-annotated).
 
-## Citation
-
-If you use this dataset in your research, please cite the following paper:
-
-```
-TO BE ADDED UPON PUBLICATION
-```
 
 ## Usage
 
@@ -102,6 +95,13 @@ The models used in the paper are available on the [Hugging Face Hub](https://hug
 - 🇮🇹 [dbmdz/bert-base-italian-xxl-uncased](https://huggingface.co/dbmdz/bert-base-italian-xxl-uncased)
 - 🇮🇹 [morenolq/bart-it](https://huggingface.co/morenolq/bart-it)
 
+## Citation
+
+If you use this dataset in your research, please cite the following paper:
+
+```
+TO BE ADDED UPON PUBLICATION
+```
 
 ## License
 
