@@ -72,6 +72,6 @@ For more information about the dataset, please refer to the [paper](#).
 
 The dataset is licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
-[1]: [Paper](#)
-[2]: [Hugging Face Hub](#)
-[3]: https://creativecommons.org/licenses/by-nc-sa/4.0/
+- [Paper describing the dataset and initial experiments](#)
+- [Dataset on the Hugging Face Hub](#)
+- https://creativecommons.org/licenses/by-nc-sa/4.0/
