@@ -82,6 +82,7 @@ The models used in the paper are available on the [Hugging Face Hub](https://hug
 
 The models used in the paper are available on the [Hugging Face Hub](https://huggingface.co/models).
 
+- 🌍 Whisper large: [openai/whisper-large-v2](https://huggingface.co/openai/whisper-large-v2)
 - 🇮🇹 Whisper small: [ALM/whisper-it-small-augmented](https://huggingface.co/ALM/whisper-it-small-augmented)
 - 🇮🇹 Whisper medium: [EdoAbati/whisper-medium-it-2](https://huggingface.co/EdoAbati/whisper-medium-it-2)
 - 🇮🇹 Whisper large: [EdoAbati/whisper-large-v2-it](https://huggingface.co/EdoAbati/whisper-large-v2-it)
