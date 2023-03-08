@@ -69,6 +69,27 @@ For more information about the dataset, please refer to the [paper](#).
 
 ## Models used in the paper
 
+### Parameter settings
+
+The parameters used for the training of the models are set to allow a fair comparison between the different models and to follow the recommendations of the related literature. The parameters are summarized in the following table:
+
+| Model | Task | Parameters | Learning rate | Batch size | Max epochs | Warmup | Weight decay |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| facebook/wav2vec2-xls-r-300m | SLU | 300M | 1e-4 | 128 | 30 | 0.1 ratio | 0.01 |
+| facebook/wav2vec2-xls-r-1b | SLU | 1B | 1e-4 | 32 | 30 | 0.1 ratio | 0.01 |
+| jonatasgrosman/wav2vec2-large-xlsr-53-italian | SLU | 300M | 1e-4 | 128 | 30 | 0.1 ratio | 0.01 |
+| jonatasgrosman/wav2vec2-xls-r-1b-italian | SLU | 1B | 1e-4 | 32 | 30 | 0.1 ratio | 0.01 |
+| ALM/whisper-it-small-augmented | ASR | 224M | 1e-5 | 8 | 5 | 500 steps | 0.01 |
+| EdoAbati/whisper-medium-it-2 | ASR | 769M | 1e-5 | 8 | 5 | 500 steps | 0.01 |
+| EdoAbati/whisper-large-v2-it | ASR | 1.5B | 1e-5 | 8 | 5 | 500 steps | 0.01 |
+| bert-base-multilingual-uncased | NLU | 167M | 5e-5 | 8 | 5 | 500 steps | 0.01 |
+| facebook/mbart-large-cc25 | NLU | 611M | 5e-5 | 8 | 5 | 500 steps | 0.01 |
+| dbmdz/bert-base-italian-xxl-uncased | NLU | 110M | 5e-5 | 8 | 5 | 500 steps | 0.01 |
+| morenolq/bart-it | NLU | 141M | 5e-5 | 8 | 5 | 500 steps | 0.01 |
+
+In all cases we opted for AdamW optimizer.
+
+
 ### SLU intent classification
 
 The models used in the paper are available on the [Hugging Face Hub](https://huggingface.co/models).
