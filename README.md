@@ -79,13 +79,13 @@ The parameters used for the training of the models are set to allow a fair compa
 | facebook/wav2vec2-xls-r-1b | SLU | 1B | 1e-4 | 32 | 30 | 0.1 ratio | 0.01 | 21m 30s per epoch | 29ms per sample |
 | jonatasgrosman/wav2vec2-large-xlsr-53-italian | SLU | 300M | 1e-4 | 128 | 30 | 0.1 ratio | 0.01 | 9m 35s per epoch | 13ms per sample |
 | jonatasgrosman/wav2vec2-xls-r-1b-italian | SLU | 1B | 1e-4 | 32 | 30 | 0.1 ratio | 0.01 | 21m 30s per epoch | 29ms per sample |
-| ALM/whisper-it-small-augmented | ASR | 224M | 1e-5 | 8 | 5 | 500 steps | 0.01 | XX | XX |
-| EdoAbati/whisper-medium-it-2 | ASR | 769M | 1e-5 | 8 | 5 | 500 steps | 0.01 | XX | XX |
-| EdoAbati/whisper-large-v2-it | ASR | 1.5B | 1e-5 | 8 | 5 | 500 steps | 0.01 | XX | XX |
-| bert-base-multilingual-uncased | NLU | 167M | 5e-5 | 8 | 5 | 500 steps | 0.01 | XX | XX |
-| facebook/mbart-large-cc25 | NLU | 611M | 5e-5 | 8 | 5 | 500 steps | 0.01 | XX | XX |
-| dbmdz/bert-base-italian-xxl-uncased | NLU | 110M | 5e-5 | 8 | 5 | 500 steps | 0.01 | XX | XX |
-| morenolq/bart-it | NLU | 141M | 5e-5 | 8 | 5 | 500 steps | 0.01 | XX | XX |
+| ALM/whisper-it-small-augmented | ASR | 224M | 1e-5 | 8 | 5 | 500 steps | 0.01 | 26m 30s per epoch | 25ms per sample |
+| EdoAbati/whisper-medium-it-2 | ASR | 769M | 1e-5 | 8 | 5 | 500 steps | 0.01 | 49m per epoch | 94ms per sample |
+| EdoAbati/whisper-large-v2-it | ASR | 1.5B | 1e-5 | 8 | 5 | 500 steps | 0.01 | 1h 17m per epoch | 238ms per sample |
+| bert-base-multilingual-uncased | NLU | 167M | 5e-5 | 8 | 5 | 500 steps | 0.01 | 1m 22s per epoch | 1.5ms per sample |
+| facebook/mbart-large-cc25 | NLU | 611M | 5e-5 | 8 | 5 | 500 steps | 0.01 | 7m 53s per epoch | 4.7ms per sample |
+| dbmdz/bert-base-italian-xxl-uncased | NLU | 110M | 5e-5 | 8 | 5 | 500 steps | 0.01 | 1m 30s per epoch | 1.4ms per sample |
+| morenolq/bart-it | NLU | 141M | 5e-5 | 8 | 5 | 500 steps | 0.01 | 1m 54s per epoch | 1.9 ms per sample |
 
 In all cases we opted for AdamW optimizer. All experiments were run on a single NVIDIA A6000 GPU.
 
