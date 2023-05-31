@@ -69,6 +69,9 @@ For more information about the dataset, please refer to the [paper](#).
 
 ## Models used in the paper
 
+### Hardware settings
+All experiments were conducted on a private workstation with Intel Core i9-10980XE CPU, 1 $\times$ NVIDIA RTX A6000 GPU, 64 GB of RAM running Ubuntu 22.04 LTS.
+
 ### Parameter settings
 
 The parameters used for the training of the models are set to allow a fair comparison between the different models and to follow the recommendations of the related literature. The parameters are summarized in the following table:
