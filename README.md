@@ -4,6 +4,10 @@ This repository contains the code and the dataset for the paper [ITALIC: An ITAL
 
 ITALIC is a new intent classification dataset for the Italian language, which is the first of its kind. It includes spoken and written utterances and is annotated with 60 intents. The dataset is available on the [Hugging Face Hub](#).
 
+### Latest Updates
+
+- **June 15th, 2023**: ITALIC dataset has been released on [Zenodo](https://zenodo.org/record/8040649): https://zenodo.org/record/8040649.
+
 ## Table of Contents
 
 - [Data collection](#data-collection)
