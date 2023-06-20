@@ -2,7 +2,7 @@
 
 This repository contains the code and the dataset for the paper [ITALIC: An ITALian Intent Classification Dataset](#).
 
-ITALIC is a new intent classification dataset for the Italian language, which is the first of its kind. It includes spoken and written utterances and is annotated with 60 intents. The dataset is available on the [Hugging Face Hub](#).
+ITALIC is a new intent classification dataset for the Italian language, which is the first of its kind. It includes spoken and written utterances and is annotated with 60 intents. The dataset is available on [Zenodo](https://zenodo.org/record/8040649) and we are working on making it accessible also from HuggingFace Hub.
 
 ### Latest Updates
 
@@ -30,7 +30,7 @@ All the audio recordings included in the dataset have received a validation from
 
 ## Dataset
 
-The dataset is available on the [Hugging Face Hub](#). It is composed of 3 different splits:
+The dataset is available on the [Zenodo](https://zenodo.org/record/8040649). It is composed of 3 different splits:
 - easy: all the utterances are randomly shuffled and divided into 3 splits (train, validation, test).
 - speaker: the utterances are divided into 3 splits (train, validation, test) based on the speaker. Each split only contains utterances from a pool of speakers that do not overlap with the other splits.
 - noisy: the utterances are divided into 3 splits (train, validation, test) based on the recording conditions. The test split only contains utterances with the highest level of noise.
@@ -94,7 +94,7 @@ The parameters used for the training of the models are set to allow a fair compa
 | dbmdz/bert-base-italian-xxl-uncased | NLU | 110M | 5e-5 | 8 | 5 | 500 steps | 0.01 | 1m 30s per epoch | 1.4ms per sample |
 | morenolq/bart-it | NLU | 141M | 5e-5 | 8 | 5 | 500 steps | 0.01 | 1m 54s per epoch | 1.9 ms per sample |
 
-In all cases we opted for AdamW optimizer. All experiments were run on a single NVIDIA A6000 GPU.
+In all cases, we opted for the AdamW optimizer. All experiments were run on a single NVIDIA A6000 GPU.
 
 
 ### SLU intent classification
@@ -134,8 +134,8 @@ TO BE ADDED UPON PUBLICATION
 
 ## License
 
-The dataset is licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+The dataset is licensed under the [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
 
-- [Paper describing the dataset and initial experiments](#)
-- [Dataset on the Hugging Face Hub](#)
-- https://creativecommons.org/licenses/by-nc-sa/4.0/
+- [Paper describing the dataset and initial experiments](https://arxiv.org/abs/2306.08502)
+- [Dataset on Zenodo](https://zenodo.org/record/8040649)
+- [https://creativecommons.org/licenses/by-nc-sa/4.0/](https://creativecommons.org/licenses/by/4.0/)https://creativecommons.org/licenses/by/4.0/
