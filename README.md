@@ -1,22 +1,4 @@
----
-pretty_name: ITALIC
-annotations_creators:
-- crowdsourced
-language_creators:
-- Italian
-language_bcp47:
-- it
-size_categories:
-  it: 10K<n<100K
-task_categories:
-- automatic-speech-recognition
-- audio-classification
-task_ids:
-- intent-classification
-license: cc-by-nc-nd-4.0
----
-
-# Dataset Card for ITALIC
+# ITALIC
 
 ITALIC is an intent classification dataset for the Italian language, which is the first of its kind. 
 It includes spoken and written utterances and is annotated with 60 intents. 
