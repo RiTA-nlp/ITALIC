@@ -1,4 +1,4 @@
-# ITALIC
+# ITALIC: An ITALian Intent Classification Dataset
 
 ITALIC is an intent classification dataset for the Italian language, which is the first of its kind. 
 It includes spoken and written utterances and is annotated with 60 intents. 
