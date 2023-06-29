@@ -1,8 +1,27 @@
-# ITALIC: An ITALian Intent Classification Dataset
+---
+pretty_name: ITALIC
+annotations_creators:
+- crowdsourced
+language_creators:
+- Italian
+language_bcp47:
+- it
+size_categories:
+  it: 10K<n<100K
+task_categories:
+- automatic-speech-recognition
+- audio-classification
+task_ids:
+- intent-classification
+license: cc-by-nc-nd-4.0
+---
 
-This repository contains the code and the dataset for the paper [ITALIC: An ITALian Intent Classification Dataset](#).
+# Dataset Card for ITALIC
 
-ITALIC is a new intent classification dataset for the Italian language, which is the first of its kind. It includes spoken and written utterances and is annotated with 60 intents. The dataset is available on [Zenodo](https://zenodo.org/record/8040649) and we are working on making it accessible also from HuggingFace Hub.
+ITALIC is an intent classification dataset for the Italian language, which is the first of its kind. 
+It includes spoken and written utterances and is annotated with 60 intents. 
+The dataset is available on [Zenodo](https://zenodo.org/record/8040649) and connectors ara available for the [HuggingFace Hub](https://huggingface.co/datasets/RiTA-nlp/ITALIC).
+
 
 ### Latest Updates
 
@@ -31,9 +50,9 @@ All the audio recordings included in the dataset have received a validation from
 ## Dataset
 
 The dataset is available on the [Zenodo](https://zenodo.org/record/8040649). It is composed of 3 different splits:
-- easy: all the utterances are randomly shuffled and divided into 3 splits (train, validation, test).
-- speaker: the utterances are divided into 3 splits (train, validation, test) based on the speaker. Each split only contains utterances from a pool of speakers that do not overlap with the other splits.
-- noisy: the utterances are divided into 3 splits (train, validation, test) based on the recording conditions. The test split only contains utterances with the highest level of noise.
+- `massive`: all the utterances are randomly shuffled and divided into 3 splits (train, validation, test).
+- `hard_speaker`: the utterances are divided into 3 splits (train, validation, test) based on the speaker. Each split only contains utterances from a pool of speakers that do not overlap with the other splits.
+- `hard_noisy`: the utterances are divided into 3 splits (train, validation, test) based on the recording conditions. The test split only contains utterances with the highest level of noise.
 
 Each split contains the following annotations:
 - `utt`: the original text of the utterance.
@@ -57,8 +76,12 @@ The dataset can be loaded using the `datasets` library:
 
 ```python
 from datasets import load_dataset
-...
-# complete information will be provided upon publication
+
+italic = load_dataset("RiTA-nlp/ITALIC", "massive") # hard_speaker, hard_noisy are also available
+
+italic_train = italic["train"]
+italic_valid = italic["validation"]
+italic_test  = italic["test"]
 ```
 
 The dataset has been designed for intent classification tasks. The `intent` column can be used as the label. However, the dataset can be used for other tasks as well. 
@@ -68,7 +91,7 @@ The dataset has been designed for intent classification tasks. The `intent` colu
 - **Automatic speech recognition**: the `utt` column can be used as the label.
 - **Accent identification**: the `region` column can be used as the label.
 
-For more information about the dataset, please refer to the [paper](#).
+For more information about the dataset, please refer to the [paper](https://arxiv.org/abs/2306.08502).
 
 
 ## Models used in the paper
@@ -126,10 +149,15 @@ The models used in the paper are available on the [Hugging Face Hub](https://hug
 
 ## Citation
 
-If you use this dataset in your research, please cite the following paper:
+If you use this dataset in your research, please cite the following paper (**interspeech 2023** version is coming soon after the proceedings are published):
 
-```
-TO BE ADDED UPON PUBLICATION
+```bibtex
+@article{koudounas2023italic,
+  title={ITALIC: An Italian Intent Classification Dataset},
+  author={Koudounas, Alkis and La Quatra, Moreno and Vaiani, Lorenzo and Colomba, Luca and Attanasio, Giuseppe and Pastor, Eliana and Cagliero, Luca and Baralis, Elena},
+  journal={arXiv preprint arXiv:2306.08502},
+  year={2023}
+}
 ```
 
 ## License
