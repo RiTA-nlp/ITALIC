@@ -71,8 +71,8 @@ from datasets import load_dataset
 # using huggingface-cli login
 # or follow https://huggingface.co/docs/hub/security-tokens 
 
-# config="hard_speaker", config="hard_noisy" are also available
-italic = load_dataset("RiTA-nlp/ITALIC", config="massive", use_auth_token=True) 
+# configs "hard_speaker" and "hard_noisy" are also available (to substitute "massive")
+italic = load_dataset("RiTA-nlp/ITALIC", "massive", use_auth_token=True) 
 italic_train = italic["train"]
 italic_valid = italic["validation"]
 italic_test  = italic["test"]
