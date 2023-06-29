@@ -54,13 +54,25 @@ Each split contains the following annotations:
 
 ## Usage
 
-The dataset can be loaded using the `datasets` library:
+The dataset can be loaded using the `datasets` library. You need to install the following dependencies:
+
+```bash
+pip install datasets
+pip install librosa
+pip install soundfile
+```
+
+Then, you can load the dataset as follows:
 
 ```python
 from datasets import load_dataset
 
-italic = load_dataset("RiTA-nlp/ITALIC", "massive") # hard_speaker, hard_noisy are also available
+# Please be sure to use use_auth_token=True and to set the access token
+# using huggingface-cli login
+# or follow https://huggingface.co/docs/hub/security-tokens 
 
+# config="hard_speaker", config="hard_noisy" are also available
+italic = load_dataset("RiTA-nlp/ITALIC", config="massive", use_auth_token=True) 
 italic_train = italic["train"]
 italic_valid = italic["validation"]
 italic_test  = italic["test"]
