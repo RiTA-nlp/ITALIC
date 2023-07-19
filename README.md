@@ -4,6 +4,7 @@ ITALIC is an intent classification dataset for the Italian language, which is th
 It includes spoken and written utterances and is annotated with 60 intents. 
 The dataset is available on [Zenodo](https://zenodo.org/record/8040649) and connectors ara available for the [HuggingFace Hub](https://huggingface.co/datasets/RiTA-nlp/ITALIC).
 
+[![arxiv preprint](https://img.shields.io/badge/arXiv-2306.08502-b31b1b.svg)](https://arxiv.org/abs/2306.08502)
 
 ### Latest Updates
 
