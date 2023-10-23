@@ -145,13 +145,14 @@ The models used in the paper are available on the [Hugging Face Hub](https://hug
 
 ## Citation
 
-If you use this dataset in your research, please cite the following paper (**interspeech 2023** version is coming soon after the proceedings are published):
+If you use this dataset in your research, please cite the following paper:
 
 ```bibtex
-@article{koudounas2023italic,
+@inproceedings{koudounas2023italic,
   title={ITALIC: An Italian Intent Classification Dataset},
   author={Koudounas, Alkis and La Quatra, Moreno and Vaiani, Lorenzo and Colomba, Luca and Attanasio, Giuseppe and Pastor, Eliana and Cagliero, Luca and Baralis, Elena},
-  journal={arXiv preprint arXiv:2306.08502},
+  booktitle = {Interspeech 2023, 24rd Annual Conference of the International Speech Communication Association, Dublin, Ireland, 20-24 August 2023},
+  publisher = {{ISCA}},
   year={2023}
 }
 ```
